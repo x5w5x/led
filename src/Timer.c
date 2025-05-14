@@ -26,3 +26,13 @@ void Timer1_Init()
 
 
 
+void Timer0() interrupt 1
+{
+    TH0=(65535-50000)/256;
+    TL0=(65535-50000)%256;
+    count++;
+    if (count>20)
+    P2_1=~P2_1,count=0;
+}
+
+
