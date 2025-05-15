@@ -1,28 +1,33 @@
 
 #include <REGX52.H>
-
+#include "UART.h"
 #include"Timer.h"
+void Delay(unsigned int t)
+{
+    unsigned int i,j;
+    for(i=0;i<t;i++)
+        for(j=0;j<125;j++);
+}
 
 
 
- unsigned char count=0;
 
+
+
+unsigned char sec=0;
 void main()
 {
-  Timer0_Init();
-    P2_1=0;
-    while (1)
-    {
-        
-    }
+     UART_Init();
+     
+     while(1)
+     {
+         UART_SendByte(sec);
+         sec++;
+         Delay(1000);
+     }
+  
 }
 
 
-void Timer0() interrupt 1
-{
-    TH0=(65535-50000)/256;
-    TL0=(65535-50000)%256;
-    count++;
-    if (count>20)
-    P2_1=~P2_1,count=0;
-}
+
+
