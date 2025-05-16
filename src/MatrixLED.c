@@ -7,9 +7,6 @@ sbit SER=P3^4;   //74HC595串行数据输入
 
 #define MatrixLED_Port P0 //LED矩阵端口
 
-
-
-
 void Delay(unsigned int t)
 {
     unsigned int i,j;
