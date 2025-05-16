@@ -9,6 +9,7 @@ void DS1302_Init()
 {
     DS1302_CE=0;
     DS1302_SCLK=0;
+    // DS1302_WriteByte(0x8e,0x00);
 
 }
 
