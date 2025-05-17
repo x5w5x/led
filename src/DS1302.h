@@ -23,4 +23,15 @@ extern struct DS1302 time;
 
 void DS1302_GetTime(void);
 
+
+
+void DS1302_SetYear(unsigned char Year);
+void DS1302_SetMonth(unsigned char Month);
+void DS1302_SetDate(unsigned char Date);
+void DS1302_SetHour(unsigned char Hour);
+void DS1302_SetMinute(unsigned char Minute);
+void DS1302_SetSecond(unsigned char Second);
+void DS1302_SetDay(unsigned char Day);
+
+
 #endif

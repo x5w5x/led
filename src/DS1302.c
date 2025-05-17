@@ -160,3 +160,48 @@ void DS1302_GetTime(void)
     time.Day=DS1302_ReadByte(DS1302_DAY); //读取星期
 
 }
+
+
+void DS1302_SetYear(unsigned char Year)
+{   
+    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Year=Year/10*16+Year%10;
+    DS1302_WriteByte(DS1302_YEAR,Year); //写入年份
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetMonth(unsigned char Month)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Month=Month/10*16+Month%10;
+    DS1302_WriteByte(DS1302_MONTH,Month); //写入月份
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetDate(unsigned char Date)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Date=Date/10*16+Date%10;
+    DS1302_WriteByte(DS1302_DATE,Date); //写入日期
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetHour(unsigned char Hour)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Hour=Hour/10*16+Hour%10;
+    DS1302_WriteByte(DS1302_HOUR,Hour); //写入小时
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetMinute(unsigned char Minute)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Minute=Minute/10*16+Minute%10;
+    DS1302_WriteByte(DS1302_MINUTE,Minute); //写入分钟
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetSecond(unsigned char Second)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Second=Second/10*16+Second%10;
+    DS1302_WriteByte(DS1302_SECOND,Second); //写入秒
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+void DS1302_SetDay(unsigned char Day)
+{    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    Day=Day/10*16+Day%10;
+    DS1302_WriteByte(DS1302_DAY,Day); //写入星期
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}

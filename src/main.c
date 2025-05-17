@@ -28,20 +28,22 @@ void main()
     DS1302_Time[3]=23;
     DS1302_Time[4]=33;
     DS1302_Time[5]=0;
-    DS1302_Time[6]=6;
+    DS1302_Time[6]=5;
    DS1302_SetTime();
+   DS1302_SetDate(16);
+   
     
      while(1)
      {
       // DS1302_ReadTime();//数组访问
-      
+  
       DS1302_GetTime(); //结构体访问
       
 
 
       LCD_ShowNum(1,1,time.Year,2);
       LCD_ShowNum(1,4,time.Month,2);
-      LCD_ShowNum(1,7,time.Day,2);
+      LCD_ShowNum(1,7,time.Date,2);
       LCD_ShowNum(2,1,time.Hour,2);
       LCD_ShowNum(2,4,time.Minute,2);
       LCD_ShowNum(2,7,time.Second,2);
