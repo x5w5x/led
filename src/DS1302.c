@@ -1,5 +1,5 @@
 #include <REGX52.H>
-
+#include"DS1302.h"
 sbit DS1302_SCLK = P3^6; //时钟
 sbit DS1302_IO = P3^4; //数据
 sbit DS1302_CE = P3^5;  //使能
@@ -13,8 +13,7 @@ sbit DS1302_CE = P3^5;  //使能
 #define DS1302_YEAR 0x8c //年
 #define DS1302_WP 0x8e //写保护
 
-unsigned char DS1302_Time[]={17,12,16,16,16,16,16};
-
+unsigned char DS1302_Time[]={25,5,17,20,26,16,6};
 
 
 void DS1302_Init()
@@ -126,6 +125,9 @@ void DS1302_ReadTime(void)
     DS1302_Time[6]=DS1302_ReadByte(DS1302_DAY); //读取星期
 
 
+
    
     
 }
+ 
+
