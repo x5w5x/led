@@ -11,12 +11,16 @@ struct DS1302
 {
     unsigned char Year;
     unsigned char Month;
-    unsigned char Day;
+    unsigned char Date;
     unsigned char Hour;
     unsigned char Minute;
     unsigned char Second;
-} time;
-struct DS1302 DS1302_ReadTime2(void);
+    unsigned char Day;
+};
 
+extern struct DS1302 time;
+
+
+void DS1302_GetTime(void);
 
 #endif
