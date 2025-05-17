@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+
 import time
 import logging
 import sys
@@ -500,9 +501,14 @@ class Programmer:
 
         self.__conn_write(buf)
 
-    def detect(self):  
-       
+    def detect(self): 
+        self.conn.dtr = False
+        # self.conn.rts = False
+        time.sleep(0.1)
         for i in range(500): 
+            self.conn.dtr = True
+            # self.conn.rts = True
+        
             try:
                 if self.protocol in [PROTOCOL_89,PROTOCOL_12C52,PROTOCOL_12Cx052,PROTOCOL_12C5A]:
                     self.__conn_write([0x7F,0x7F])
@@ -606,18 +612,18 @@ class Programmer:
     def print_info(self):
         print("系统时钟频率: %.3fMHz" % self.fosc)
         if self.protocol in PROTOSET_8:
-            print("掉电唤醒定时器频率: %.3fKHz" % self.wakeup_fosc)
-            print("内部参考电压: %d mV" %self.internal_vol)
-            print("低压检测电压: %.1f V" %self.det_low_vol) 
-            print("内部安排测试时间: 20%s年%s月%s日" %(self.test_year,self.test_month,self.test_day))           
+            print("掉电唤醒定时器频 ?: %.3fKHz" % self.wakeup_fosc)
+            print("内部参考电 ?: %d mV" %self.internal_vol)
+            print("低压检测电 ?: %.1f V" %self.det_low_vol) 
+            print("内部安排测试时间: 20%s ?%s ?%s ?" %(self.test_year,self.test_month,self.test_day))           
 
         if self.protocol in PROTOSET_15:
-            print("掉电唤醒定时器频率: %.3fKHz" % self.wakeup_fosc)
-            print("内部参考电压: %d mV" %self.internal_vol) 
-            print("内部安排测试时间: 20%s年%s月%s日" %(self.test_year,self.test_month,self.test_day))   
+            print("掉电唤醒定时器频 ?: %.3fKHz" % self.wakeup_fosc)
+            print("内部参考电 ?: %d mV" %self.internal_vol) 
+            print("内部安排测试时间: 20%s ?%s ?%s ?" %(self.test_year,self.test_month,self.test_day))   
 
-        print("单片机型号: %s" % self.name)
-        print("固件版本号: %s" % self.version)
+        print("单片机型 ?: %s" % self.name)
+        print("固件版本 ?: %s" % self.version)
         if self.romsize is not None:
             print("程序空间: %dKB" % self.romsize)
 
@@ -655,13 +661,13 @@ class Programmer:
         baud0 = self.conn.baudrate
         
         if self.protocol in PROTOSET_8:
-            baud = 115200 #若没指定波特率，默认为115200
+            baud = 115200 #若没指定波特率，默认 ?115200
             if highbaud_pre != 115200:
                 baud = highbaud_pre
             #支持460800以内的任意波特率
-            #典型波特率：460800、230400、115200、57600、38400、28800、19200、14400、9600、4800
+            #典型波特率：460800 ?230400 ?115200 ?57600 ?38400 ?28800 ?19200 ?14400 ?9600 ?4800
             if baud in range(460801): 
-                #定时器1重载值计算微调，可能由于目标芯片的差异性需要微调
+                #定时 ?1重载值计算微调，可能由于目标芯片的差异性需要微 ?
                 if baud in [300000,350000]:
                     Timer1_value = int(65536.2 - float(24.0 * 1000000 / 4 / baud))  
                 else: 
@@ -704,13 +710,13 @@ class Programmer:
             self.__conn_baudrate(baud)
             self.baudrate = baud
         elif self.protocol in PROTOSET_15:
-            baud = 115200 #若没指定波特率，默认为115200
+            baud = 115200 #若没指定波特率，默认 ?115200
             if highbaud_pre != 115200:
                 baud = highbaud_pre
             #支持460800以内的任意波特率
-            #典型波特率：460800、230400、115200、57600、38400、28800、19200、14400、9600、4800
+            #典型波特率：460800 ?230400 ?115200 ?57600 ?38400 ?28800 ?19200 ?14400 ?9600 ?4800
             if baud in range(460801): 
-                #定时器1重载值计算微调，可能由于目标芯片的差异性需要微调
+                #定时 ?1重载值计算微调，可能由于目标芯片的差异性需要微 ?
                 if baud in [300000,350000]:
                     Timer1_value = int(65536.2 - float(22.1184 * 1000000 / 4 / baud))  
                 else: 
@@ -849,7 +855,7 @@ class Programmer:
                 serial_number = serial_number +str(i)
             self.serial_number = str(serial_number)
             print("\r")
-            sys.stdout.write("芯片出厂序列号: ")
+            sys.stdout.write("芯片出厂序列 ?: ")
             sys.stdout.write(self.serial_number.upper())
             sys.stdout.flush()
             print("\r")
@@ -959,6 +965,7 @@ class Programmer:
 def autoisp(conn, baud, magic):
     if not magic:
         return
+    
 
     bak = conn.baudrate
     conn.baudrate = baud
@@ -969,7 +976,7 @@ def autoisp(conn, baud, magic):
 
 
 def program(prog, code, erase_eeprom=None):
-    sys.stdout.write("检测目标...")
+    sys.stdout.write("检测目 ?...")
     sys.stdout.flush()
 
     prog.detect()
@@ -995,7 +1002,7 @@ def program(prog, code, erase_eeprom=None):
 
     prog.unknown_packet_2()
 
-    sys.stdout.write("开始擦除芯片...")
+    sys.stdout.write("开始擦除芯 ?...")
     sys.stdout.flush()
 
     time_start = time.time()
@@ -1396,7 +1403,7 @@ def main():
     else:
         code = None
 
-    print("通信端口：%s  最低波特率：%d bps" % (opts.port, opts.lowbaud))
+    print("通信端口 ?%s  最低波特率 ?%d bps" % (opts.port, opts.lowbaud))
     
     global highbaud_pre
     highbaud_pre = opts.highbaud
@@ -1405,7 +1412,11 @@ def main():
                        parity=serial.PARITY_NONE) as conn:
         if opts.aispmagic:
             autoisp(conn, opts.aispbaud, opts.aispmagic)
+            print("AutoISP 刷新成功")
+              
         program(Programmer(conn, opts.protocol), code, opts.erase_eeprom)
+        
+
 
 
 if __name__ == "__main__":
