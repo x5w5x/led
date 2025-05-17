@@ -13,9 +13,12 @@ sbit DS1302_CE = P3^5;  //使能
 #define DS1302_YEAR 0x8c //年
 #define DS1302_WP 0x8e //写保护
 
-unsigned char DS1302_Time[]={25,5,17,20,26,16,6};
+unsigned char DS1302_Time[]={25,5,17,20,26,16,6}; //初始时间数组 25年5月17日20时26分16秒星期6
 
-
+/**
+ * @brief 初始化DS1302
+ * @note
+ */
 void DS1302_Init()
 {
     DS1302_CE=0;
@@ -23,7 +26,13 @@ void DS1302_Init()
     // DS1302_WriteByte(0x8e,0x00);
 
 }
-
+/**
+ * @brief 向DS1302写入一个字节
+ * @note
+ * @param Command 命令地址
+ * @param Data 数据
+ * @retval None
+ */
 void  DS1302_WriteByte(unsigned char Command, unsigned char Data)
 {
     unsigned char i;
@@ -129,4 +138,25 @@ void DS1302_ReadTime(void)
     
 }
  
+struct DS1302 {
+    unsigned char Year;
+    unsigned char Month;
+    unsigned char Date;
+    unsigned char Hour;
+    unsigned char Minute;
+    unsigned char Second;
+    unsigned char Day;
+};
+struct DS1302 DS1302_ReadTime2(void)
+{
+    struct DS1302 DS1302_Time2;
+    DS1302_Time2.Year=DS1302_ReadByte(DS1302_YEAR); //读取年份
+    DS1302_Time2.Month=DS1302_ReadByte(DS1302_MONTH); //读取月份
+    DS1302_Time2.Date=DS1302_ReadByte(DS1302_DATE); //读取日期
+    DS1302_Time2.Hour=DS1302_ReadByte(DS1302_HOUR); //读取小时
+    DS1302_Time2.Minute=DS1302_ReadByte(DS1302_MINUTE); //读取分钟
+    DS1302_Time2.Second=DS1302_ReadByte(DS1302_SECOND); //读取秒
+    DS1302_Time2.Day=DS1302_ReadByte(DS1302_DAY); //读取星期
+    return DS1302_Time2;
+}
 
