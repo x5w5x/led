@@ -22,14 +22,21 @@ void main()
    LCD_ShowString(1,1,"  -  -  ");
 
    LCD_ShowString(2,1,"  :  :  ");;
+    DS1302_Time[0]=25;
+    DS1302_Time[1]=5;
+    DS1302_Time[2]=17;
+    DS1302_Time[3]=23;
+    DS1302_Time[4]=33;
+    DS1302_Time[5]=0;
+    DS1302_Time[6]=6;
    DS1302_SetTime();
-    
     
      while(1)
      {
-      DS1302_ReadTime();//数组访问
+      // DS1302_ReadTime();//数组访问
       
       DS1302_GetTime(); //结构体访问
+      
 
 
       LCD_ShowNum(1,1,time.Year,2);
