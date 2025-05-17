@@ -18,4 +18,5 @@ struct DS1302
 } time;
 struct DS1302 DS1302_ReadTime2(void);
 
+
 #endif
