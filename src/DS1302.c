@@ -71,7 +71,7 @@ unsigned char DS1302_ReadByte(unsigned char Command)
     
     for( i=0;i<8;i++)
     {
-    DS1302_SCLK=1;
+    DS1302_SCLK=1;//多置一次（看时序图）
     DS1302_SCLK=0;
     if (DS1302_IO) //读数据
     {
@@ -80,7 +80,7 @@ unsigned char DS1302_ReadByte(unsigned char Command)
     }
     DS1302_CE=0; //禁止
     DS1302_IO=0; //释放IO
-    Data=Data/16*10+Data%16;
+    Data=Data/16*10+Data%16;//BCD码转十进制
     return Data;
 
 }
@@ -89,6 +89,8 @@ unsigned char DS1302_ReadByte(unsigned char Command)
 
 void DS1302_SetTime(void)
 {
+    //不魔改WriteByte函数，直接写入BCD码
+    //防止写入数据指令错误
     DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     DS1302_WriteByte(DS1302_YEAR,DS1302_Time[0]/10*16+DS1302_Time[0]%10); //写入年份
     DS1302_WriteByte(DS1302_MONTH,DS1302_Time[1]/10*16+DS1302_Time[1]%10); //写入月份
