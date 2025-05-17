@@ -35,9 +35,8 @@ void main()
      while(1)
      {
       DS1302_ReadTime();
-      DS1302_GetTime();
-     //  LCD_ShowNum(1,1,DS1302_Time[0],2);
-      LCD_ShowNum(1,1,Timestruct.year,2);
+
+      LCD_ShowNum(1,1,DS1302_Time[0],2);
       LCD_ShowNum(1,4,DS1302_Time[1],2);
       LCD_ShowNum(1,7,DS1302_Time[2],2);
       LCD_ShowNum(2,1,DS1302_Time[3],2);

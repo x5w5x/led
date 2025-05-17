@@ -1,5 +1,5 @@
 #include <REGX52.H>
-#include"DS1302.h"
+
 sbit DS1302_SCLK = P3^6; //时钟
 sbit DS1302_IO = P3^4; //数据
 sbit DS1302_CE = P3^5;  //使能
@@ -23,7 +23,6 @@ void DS1302_Init()
     // DS1302_WriteByte(0x8e,0x00);
 
 }
-
 
 void  DS1302_WriteByte(unsigned char Command, unsigned char Data)
 {
