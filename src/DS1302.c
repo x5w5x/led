@@ -1,10 +1,10 @@
 #include <REGX52.H>
 #include "DS1302.h"
-
+//引脚
 sbit DS1302_SCLK = P3^6; //时钟
 sbit DS1302_IO = P3^4; //数据
 sbit DS1302_CE = P3^5;  //使能
-
+//地址
 #define DS1302_SECOND 0x80 //秒
 #define DS1302_MINUTE 0x82 //分
 #define DS1302_HOUR 0x84 //时
@@ -14,9 +14,9 @@ sbit DS1302_CE = P3^5;  //使能
 #define DS1302_YEAR 0x8c //年
 #define DS1302_WP 0x8e //写保护
 
+//时间存放数组
 unsigned char DS1302_Time[]={25,5,17,20,26,16,6}; //初始时间数组 25年5月17日20时26分16秒星期6
-
-// Time time;
+//时间结构体
 struct DS1302 time;
 
 /**
@@ -30,6 +30,7 @@ void DS1302_Init()
     // DS1302_WriteByte(0x8e,0x00);
 
 }
+
 /**
  * @brief 向DS1302写入一个字节
  * @note
@@ -88,9 +89,11 @@ unsigned char DS1302_ReadByte(unsigned char Command)
     return Data;
 
 }
-
-
-
+/**
+ * @brief 设置数组时间
+ * @note
+ * @retval None
+ */
 void DS1302_SetTime(void)
 {
     //不魔改WriteByte函数，直接写入BCD码
@@ -106,7 +109,11 @@ void DS1302_SetTime(void)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
     
 }
-
+/**
+ * @brief 读取数组时间
+ * @note
+ * @retval None
+ */
 void DS1302_ReadTime(void)
 {  
     
@@ -145,7 +152,7 @@ void DS1302_ReadTime(void)
 }
  
 /**
- * @brief 获取时间
+ * @brief 获取结构体时间
  * @note
  * @retval None
  */
@@ -162,7 +169,7 @@ void DS1302_GetTime(void)
 }
 
 /**
- * @brief 设置时间
+ * @brief 单独设置时间
  * @note
  * @param Year 年
  */
@@ -174,7 +181,7 @@ void DS1302_SetYear(unsigned char Year)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置月份
+ * @brief 单独设置月份
  * @note
  * @param Month 月
  */
@@ -185,7 +192,7 @@ void DS1302_SetMonth(unsigned char Month)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置日期
+ * @brief 单独设置日期
  * @note
  * @param Date 日
  */
@@ -196,7 +203,7 @@ void DS1302_SetDate(unsigned char Date)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置小时
+ * @brief 单独设置小时
  * @note
  * @param Hour 时
 */
@@ -207,7 +214,7 @@ void DS1302_SetHour(unsigned char Hour)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置分钟
+ * @brief 单独设置分钟
  * @note
  * @param Minute 分
  */
@@ -218,7 +225,7 @@ void DS1302_SetMinute(unsigned char Minute)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置秒
+ * @brief 单独设置秒
  * @note
  * @param Second 秒
  */
@@ -229,7 +236,7 @@ void DS1302_SetSecond(unsigned char Second)
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
 /**
- * @brief 设置星期
+ * @brief 单独设置星期
  * @note
  * @param Day 星期
  */
@@ -239,38 +246,66 @@ void DS1302_SetDay(unsigned char Day)
     DS1302_WriteByte(DS1302_DAY,Day); //写入星期
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
-
+/**
+ * @brief 单独获取年份
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetYear(void)
 {
     return DS1302_ReadByte(DS1302_YEAR); //读取年份
     
 }
-
+/**
+ * @brief 单独获取月份
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetMonth(void)
 {
     return DS1302_ReadByte(DS1302_MONTH); //读取月份
 }
-
+/**
+ * @brief 单独获取日期
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetDate(void)
 {
     return DS1302_ReadByte(DS1302_DATE); //读取日期
 }
-
+/**
+ * @brief 单独获取小时
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetHour(void)
 {
     return DS1302_ReadByte(DS1302_HOUR); //读取小时
 }
-
+/**
+ * @brief 单独获取分钟
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetMinute(void)
 {
     return DS1302_ReadByte(DS1302_MINUTE); //读取分钟
 }
-
+/**
+ * @brief 单独获取秒
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetSecond(void)
 {
     return DS1302_ReadByte(DS1302_SECOND); //读取秒
 }
-
+/**
+ * @brief 单独获取星期
+ * @note
+ * @retval unsigned char
+ */
 unsigned char DS1302_GetDay(void)
 {
     return DS1302_ReadByte(DS1302_DAY); //读取星期
