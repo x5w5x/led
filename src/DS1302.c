@@ -5,14 +5,14 @@ sbit DS1302_SCLK = P3^6; //时钟
 sbit DS1302_IO = P3^4; //数据
 sbit DS1302_CE = P3^5;  //使能
 //地址
-#define DS1302_SECOND 0x80 //秒
-#define DS1302_MINUTE 0x82 //分
-#define DS1302_HOUR 0x84 //时
-#define DS1302_DATE 0x86  //日
-#define DS1302_MONTH 0x88  //月
-#define DS1302_DAY 0x8a  //星期
-#define DS1302_YEAR 0x8c //年
-#define DS1302_WP 0x8e //写保护
+// #define DS1302_SECOND 0x80 //秒
+// #define DS1302_MINUTE 0x82 //分
+// #define DS1302_HOUR 0x84 //时
+// #define DS1302_DATE 0x86  //日
+// #define DS1302_MONTH 0x88  //月
+// #define DS1302_DAY 0x8a  //星期
+// #define DS1302_YEAR 0x8c //年
+// #define DS1302_WP 0x8e //写保护
 
 //时间存放数组
 unsigned char DS1302_Time[]={25,5,17,20,26,16,6}; //初始时间数组 25年5月17日20时26分16秒星期6
@@ -324,3 +324,5 @@ unsigned char DS1302_GetDay(void)
 {
     return DS1302_ReadByte(DS1302_DAY); //读取星期
 }
+
+

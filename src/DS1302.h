@@ -33,7 +33,8 @@ void DS1302_SetMinute(unsigned char Minute); //单独设置分
 void DS1302_SetSecond(unsigned char Second); //单独设置秒
 void DS1302_SetDay(unsigned char Day);
 
-
+/*
+//函数封装占内存
 unsigned char DS1302_GetYear(void);     //单独读取年
 unsigned char DS1302_GetMonth(void);   //单独读取月
 unsigned char DS1302_GetDate(void);    //单独读取日
@@ -41,7 +42,24 @@ unsigned char DS1302_GetHour(void);    //单独读取时
 unsigned char DS1302_GetMinute(void);  //单独读取分
 unsigned char DS1302_GetSecond(void);  //单独读取秒
 unsigned char DS1302_GetDay(void);     //单独读取星期
+*/
+// #define DS1302_ReadYear() (DS1302_ReadByte(0x8c))
+#define DS1302_SECOND 0x80 //秒
+#define DS1302_MINUTE 0x82 //分
+#define DS1302_HOUR 0x84 //时
+#define DS1302_DATE 0x86  //日
+#define DS1302_MONTH 0x88  //月
+#define DS1302_DAY 0x8a  //星期
+#define DS1302_YEAR 0x8c //年
+#define DS1302_WP 0x8e //写保护
 
+#define DS1302_ReadYear() (DS1302_ReadByte(0x8c)) //读取年
+#define DS1302_ReadMonth() (DS1302_ReadByte(0x88)) //读取月
+#define DS1302_ReadDate() (DS1302_ReadByte(0x86)) //读取日
+#define DS1302_ReadHour() (DS1302_ReadByte(0x84)) //读取时
+#define DS1302_ReadMinute() (DS1302_ReadByte(0x82)) //读取分
+#define DS1302_ReadSecond() (DS1302_ReadByte(0x80)) //读取秒
+#define DS1302_ReadDay() (DS1302_ReadByte(0x8a)) //读取星期
 
 
 #endif

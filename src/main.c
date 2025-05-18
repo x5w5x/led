@@ -24,9 +24,9 @@ void main()
    LCD_ShowString(2,1,"  :  :  ");;
     DS1302_Time[0]=25;
     DS1302_Time[1]=5;
-    DS1302_Time[2]=17;
-    DS1302_Time[3]=23;
-    DS1302_Time[4]=33;
+    DS1302_Time[2]=18;
+    DS1302_Time[3]=10;
+    DS1302_Time[4]=48;
     DS1302_Time[5]=0;
     DS1302_Time[6]=5;
    DS1302_SetTime();
@@ -41,12 +41,18 @@ void main()
       DS1302_GetTime(); //结构体访问
       // LCD_ShowNum(1,1,time.Year,2);
 
-      LCD_ShowNum(1,1,DS1302_GetYear(),2); //函数直接访问
-      LCD_ShowNum(1,4,DS1302_GetMonth(),2);
-      LCD_ShowNum(1,7,DS1302_GetDate(),2);
-      LCD_ShowNum(2,1,DS1302_GetHour(),2);
-      LCD_ShowNum(2,4,DS1302_GetMinute(),2);
-      LCD_ShowNum(2,7,DS1302_GetSecond(),2);
+      // LCD_ShowNum(1,1,DS1302_GetYear(),2); //函数直接访问
+      LCD_ShowNum(1,1,DS1302_ReadYear(),2);
+      LCD_ShowNum(1,4,DS1302_ReadMonth(),2);
+      LCD_ShowNum(1,7,DS1302_ReadDate(),2);
+      LCD_ShowNum(2,1,DS1302_ReadHour(),2);
+      LCD_ShowNum(2,4,DS1302_ReadMinute(),2);
+      LCD_ShowNum(2,7,DS1302_ReadSecond(),2);
+      // LCD_ShowNum(1,4,DS1302_GetMonth(),2);
+      // LCD_ShowNum(1,7,DS1302_GetDate(),2);
+      // LCD_ShowNum(2,1,DS1302_GetHour(),2);
+      // LCD_ShowNum(2,4,DS1302_GetMinute(),2);
+      // LCD_ShowNum(2,7,DS1302_GetSecond(),2);
 
 
 
