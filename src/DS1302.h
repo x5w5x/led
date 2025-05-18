@@ -53,13 +53,13 @@ unsigned char DS1302_GetDay(void);     //单独读取星期
 #define DS1302_YEAR 0x8c //年
 #define DS1302_WP 0x8e //写保护
 
-#define DS1302_ReadYear() (DS1302_ReadByte(0x8c)) //读取年
-#define DS1302_ReadMonth() (DS1302_ReadByte(0x88)) //读取月
-#define DS1302_ReadDate() (DS1302_ReadByte(0x86)) //读取日
-#define DS1302_ReadHour() (DS1302_ReadByte(0x84)) //读取时
-#define DS1302_ReadMinute() (DS1302_ReadByte(0x82)) //读取分
-#define DS1302_ReadSecond() (DS1302_ReadByte(0x80)) //读取秒
-#define DS1302_ReadDay() (DS1302_ReadByte(0x8a)) //读取星期
+#define DS1302_ReadYear() (DS1302_ReadByte(DS1302_YEAR)) //读取年
+#define DS1302_ReadMonth() (DS1302_ReadByte(DS1302_MONTH)) //读取月
+#define DS1302_ReadDate() (DS1302_ReadByte(DS1302_DATE)) //读取日
+#define DS1302_ReadHour() (DS1302_ReadByte(DS1302_HOUR)) //读取时
+#define DS1302_ReadMinute() (DS1302_ReadByte(DS1302_MINUTE)) //读取分
+#define DS1302_ReadSecond() (DS1302_ReadByte(DS1302_SECOND)) //读取秒
+#define DS1302_ReadDay() (DS1302_ReadByte(DS1302_DAY)) //读取星期
 
 
 #endif

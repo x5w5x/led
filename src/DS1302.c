@@ -260,6 +260,7 @@ void DS1302_SetDay(unsigned char Day)
     DS1302_WriteByte(DS1302_DAY,Day); //写入星期
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+
 /**
  * @brief 单独获取年份
  * @note
