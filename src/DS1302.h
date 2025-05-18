@@ -34,4 +34,14 @@ void DS1302_SetSecond(unsigned char Second);
 void DS1302_SetDay(unsigned char Day);
 
 
+unsigned char DS1302_GetYear(void);
+unsigned char DS1302_GetMonth(void);
+unsigned char DS1302_GetDate(void);
+unsigned char DS1302_GetHour(void);
+unsigned char DS1302_GetMinute(void);
+unsigned char DS1302_GetSecond(void);
+unsigned char DS1302_GetDay(void);
+
+
+
 #endif

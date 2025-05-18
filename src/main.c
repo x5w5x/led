@@ -36,12 +36,15 @@ void main()
      while(1)
      {
       // DS1302_ReadTime();//数组访问
-  
-      DS1302_GetTime(); //结构体访问
-      
+      // LCD_ShowNum(1,1,DS1302_Time[0],2);
+
+      // DS1302_GetTime(); //结构体访问
+      // LCD_ShowNum(1,1,time.Year,2);
+
+      LCD_ShowNum(1,1,DS1302_GetYear(),2); //函数直接访问
 
 
-      LCD_ShowNum(1,1,time.Year,2);
+
       LCD_ShowNum(1,4,time.Month,2);
       LCD_ShowNum(1,7,time.Date,2);
       LCD_ShowNum(2,1,time.Hour,2);

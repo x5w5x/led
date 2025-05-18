@@ -161,7 +161,11 @@ void DS1302_GetTime(void)
 
 }
 
-
+/**
+ * @brief 设置时间
+ * @note
+ * @param Year 年
+ */
 void DS1302_SetYear(unsigned char Year)
 {   
     DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
@@ -169,39 +173,105 @@ void DS1302_SetYear(unsigned char Year)
     DS1302_WriteByte(DS1302_YEAR,Year); //写入年份
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置月份
+ * @note
+ * @param Month 月
+ */
 void DS1302_SetMonth(unsigned char Month)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Month=Month/10*16+Month%10;
     DS1302_WriteByte(DS1302_MONTH,Month); //写入月份
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置日期
+ * @note
+ * @param Date 日
+ */
 void DS1302_SetDate(unsigned char Date)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Date=Date/10*16+Date%10;
     DS1302_WriteByte(DS1302_DATE,Date); //写入日期
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置小时
+ * @note
+ * @param Hour 时
+*/
 void DS1302_SetHour(unsigned char Hour)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Hour=Hour/10*16+Hour%10;
     DS1302_WriteByte(DS1302_HOUR,Hour); //写入小时
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置分钟
+ * @note
+ * @param Minute 分
+ */
 void DS1302_SetMinute(unsigned char Minute)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Minute=Minute/10*16+Minute%10;
     DS1302_WriteByte(DS1302_MINUTE,Minute); //写入分钟
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置秒
+ * @note
+ * @param Second 秒
+ */
 void DS1302_SetSecond(unsigned char Second)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Second=Second/10*16+Second%10;
     DS1302_WriteByte(DS1302_SECOND,Second); //写入秒
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
+/**
+ * @brief 设置星期
+ * @note
+ * @param Day 星期
+ */
 void DS1302_SetDay(unsigned char Day)
 {    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
     Day=Day/10*16+Day%10;
     DS1302_WriteByte(DS1302_DAY,Day); //写入星期
     DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
+}
+
+unsigned char DS1302_GetYear(void)
+{
+    return DS1302_ReadByte(DS1302_YEAR); //读取年份
+    
+}
+
+unsigned char DS1302_GetMonth(void)
+{
+    return DS1302_ReadByte(DS1302_MONTH); //读取月份
+}
+
+unsigned char DS1302_GetDate(void)
+{
+    return DS1302_ReadByte(DS1302_DATE); //读取日期
+}
+
+unsigned char DS1302_GetHour(void)
+{
+    return DS1302_ReadByte(DS1302_HOUR); //读取小时
+}
+
+unsigned char DS1302_GetMinute(void)
+{
+    return DS1302_ReadByte(DS1302_MINUTE); //读取分钟
+}
+
+unsigned char DS1302_GetSecond(void)
+{
+    return DS1302_ReadByte(DS1302_SECOND); //读取秒
+}
+
+unsigned char DS1302_GetDay(void)
+{
+    return DS1302_ReadByte(DS1302_DAY); //读取星期
 }
