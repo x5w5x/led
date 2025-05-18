@@ -38,7 +38,7 @@ void main()
       // DS1302_ReadTime();//数组访问
       // LCD_ShowNum(1,1,DS1302_Time[0],2);
 
-      // DS1302_GetTime(); //结构体访问
+      DS1302_GetTime(); //结构体访问
       // LCD_ShowNum(1,1,time.Year,2);
 
       LCD_ShowNum(1,1,DS1302_GetYear(),2); //函数直接访问

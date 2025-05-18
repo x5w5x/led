@@ -145,10 +145,24 @@ void DS1302_ReadTime(void)
     DS1302_Time[5]=DS1302_ReadByte(DS1302_SECOND); //读取秒
     DS1302_Time[6]=DS1302_ReadByte(DS1302_DAY); //读取星期
 
-
-
-   
     
+}
+/**
+ * @brief 设置结构体时间
+ * @note
+ * @retval None
+ */
+void DS1302_SetTime2(void)
+{
+    DS1302_WriteByte(DS1302_WP,0x00); //关闭写保护
+    DS1302_WriteByte(DS1302_YEAR,time.Year); //写入年份
+    DS1302_WriteByte(DS1302_MONTH,time.Month); //写入月份
+    DS1302_WriteByte(DS1302_DATE,time.Date); //写入日期
+    DS1302_WriteByte(DS1302_HOUR,time.Hour);   //写入小时
+    DS1302_WriteByte(DS1302_MINUTE,time.Minute); //写入分钟
+    DS1302_WriteByte(DS1302_SECOND,time.Second); //写入秒
+    DS1302_WriteByte(DS1302_DAY,time.Day); //写入星期
+    DS1302_WriteByte(DS1302_WP,0x80); //开启写保护
 }
  
 /**
