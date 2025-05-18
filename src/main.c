@@ -42,14 +42,19 @@ void main()
       // LCD_ShowNum(1,1,time.Year,2);
 
       LCD_ShowNum(1,1,DS1302_GetYear(),2); //函数直接访问
+      LCD_ShowNum(1,4,DS1302_GetMonth(),2);
+      LCD_ShowNum(1,7,DS1302_GetDate(),2);
+      LCD_ShowNum(2,1,DS1302_GetHour(),2);
+      LCD_ShowNum(2,4,DS1302_GetMinute(),2);
+      LCD_ShowNum(2,7,DS1302_GetSecond(),2);
 
 
 
-      LCD_ShowNum(1,4,time.Month,2);
-      LCD_ShowNum(1,7,time.Date,2);
-      LCD_ShowNum(2,1,time.Hour,2);
-      LCD_ShowNum(2,4,time.Minute,2);
-      LCD_ShowNum(2,7,time.Second,2);
+      // LCD_ShowNum(1,4,time.Month,2);
+      // LCD_ShowNum(1,7,time.Date,2);
+      // LCD_ShowNum(2,1,time.Hour,2);
+      // LCD_ShowNum(2,4,time.Minute,2);
+      // LCD_ShowNum(2,7,time.Second,2);
 
 
     
