@@ -30,7 +30,7 @@ void main()
     DS1302_Time[5]=0;
     DS1302_Time[6]=5;
    DS1302_SetTime();
-   DS1302_SetDate(16);
+  //  DS1302_SetMinute(8);
    
     
      while(1)

@@ -44,7 +44,7 @@ void  DS1302_WriteByte(unsigned char Command, unsigned char Data)
     DS1302_CE=1; //使能
     for( i=0;i<8;i++)
     {
-        DS1302_IO=Command&(0x01<<i); //写数据
+        DS1302_IO=Command&(0x01<<i); //写数据 地址
         DS1302_SCLK=1; 
         
         DS1302_SCLK=0;
