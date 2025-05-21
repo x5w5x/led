@@ -1,8 +1,8 @@
 #include<REG52x2.h>
 
 
-sbit I2C_SDA = P2^1;
-sbit I2C_SCL = P2^0;
+sbit I2C_SDA = P2^0;
+sbit I2C_SCL = P2^1 ;
 
 /**
  * @name I2C_Start
@@ -41,8 +41,7 @@ void I2C_SendByte(unsigned char dat)
 {
     unsigned char i;
     for(i=0;i<8;i++){
-        I2C_SDA = dat & (0x80);
-        dat <<= 1;
+        I2C_SDA = dat & (0x80>>i);
         I2C_SCL = 1;
         I2C_SCL = 0;
     }
@@ -76,7 +75,7 @@ unsigned char I2C_ReceiveByte()
  */
 void I2C_SendACK(unsigned char Ack)
 {
-    I2C_SDA = ack;
+    I2C_SDA = Ack;
     I2C_SCL = 1;
     I2C_SCL = 0;
 }
