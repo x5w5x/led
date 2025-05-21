@@ -19,27 +19,17 @@ void Delayms(unsigned int t) //—” ±1ms
 
 void main()
 {  
-   
-
+  LCD_Init();
+  LCD_ShowString(1,1,"hello world");
+ 
     
      while(1)
      {
       
-      if (P3_1==0){
-      Delayms(10);
-        if (P3_1==0){
-         Buzzer_Time(50);
+   
       
-      
-    }
-
-      
-  }
-    
-
+  }     
      
-       
-     }
   
 }
 
