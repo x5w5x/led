@@ -58,7 +58,7 @@ void I2C_SendByte(unsigned char dat)
 unsigned char I2C_ReceiveByte()
 {
     unsigned char i,dat = 0x00;
-    I2C_SDA = 1;
+    I2C_SDA = 1;// Õ∑≈SDA
     for(i=0;i<8;i++){
         I2C_SCL = 1;
         if(I2C_SDA) dat |= (0x80>>i);
