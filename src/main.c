@@ -8,6 +8,8 @@
 #include"Buzzer.h"
 #include "AT24C02.h"
 #include "key.h"
+#include"DS18B20.h"
+#include"OneWire.h"
 void Delayms(unsigned int t) //—” ±1ms
 {
     unsigned int i,j;
@@ -17,15 +19,18 @@ void Delayms(unsigned int t) //—” ±1ms
         for(j=0;j<125;j++);
 }
 
-unsigned char dat;
+unsigned char dat=1;
 unsigned char KeyNum;
 unsigned char KeyValue=0;
+
 void main()
 {  
 
   LCD_Init();
   LCD_ShowString(1,1,"hello world");
-  Timer0_Init();
+  dat=OneWire_Init();
+  LCD_ShowString(2,1,"dat=");
+  LCD_ShowNum(2,5,dat,3);
    
 
  
@@ -33,9 +38,8 @@ void main()
      while(1)
      {
       
-   KeyValue=key();
-   if(KeyValue!=0)
-  //  LCD_ShowNum(2,1,KeyValue,2);
+
+ 
   
   
       
@@ -44,14 +48,3 @@ void main()
   
 }
 
-void Time0_Routine(void) interrupt 1
-{
-    static unsigned int t0;
-    TL0=0x18;
-    TH0=0xFC;
-    t0++;
-    if(t0==20){
-        t0=0;
-        Key_loop();
-    }
-}

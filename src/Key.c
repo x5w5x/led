@@ -83,3 +83,16 @@ static unsigned char NowState, LastState;
 //         Key_loop();
 //     }
 // }
+
+
+// void Time0_Routine(void) interrupt 1
+// {
+//     static unsigned int t0;
+//     TL0=0x18;
+//     TH0=0xFC;
+//     t0++;
+//     if(t0==20){
+//         t0=0;
+//         Key_loop();
+//     }
+// }
