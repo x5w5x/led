@@ -39,16 +39,18 @@ void main()
       DS18B20_ConvertT();
       T=DS18B20_ReadT();
       if(T<0){
-        LCD_ShowString(2,1,"T=-");
+        LCD_ShowString(2,1,"-");
         T=-T;
       }
       else{
-        LCD_ShowString(2,1,"T=+");
+        LCD_ShowString(2,1,"+");
 
       }
   	LCD_ShowNum(2,2,T,3);		
 		LCD_ShowChar(2,5,'.');		
 		LCD_ShowNum(2,6,(unsigned long)(T*10000)%10000,4);
+		LCD_ShowString(2,10,"C");
+    
  
   
   
