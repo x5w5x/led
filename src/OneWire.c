@@ -16,6 +16,7 @@ sbit OneWire_DQ = P3^7;
 unsigned char OneWire_Init(void)
 {
     unsigned char i,Ackbit;
+    EA=0; //关闭总中断
 	OneWire_DQ = 1; //释放总线
     OneWire_DQ = 0; //拉低总线
 	i = 227; //247
@@ -29,6 +30,7 @@ unsigned char OneWire_Init(void)
 
     i = 227; //247
 	while (--i);
+    EA=1; //开启总中断
 
 	return Ackbit;
 
@@ -44,6 +46,7 @@ unsigned char OneWire_Init(void)
 void OneWire_SendBit(unsigned char dat)
 {
     unsigned char i;
+    EA=0; //关闭总中断
     OneWire_DQ = 0;//拉低总线
     i = 3; //32
     while (--i);//Delay 10us
@@ -51,6 +54,7 @@ void OneWire_SendBit(unsigned char dat)
     i = 22;
     while (--i);//Delay 50us
     OneWire_DQ = 1;//释放总线
+    EA=1; //开启总中断
 
 }
 /**
@@ -63,6 +67,7 @@ void OneWire_SendBit(unsigned char dat)
 unsigned char OneWire_ReceiveBit(void)
 {
     unsigned char i,dat;
+    EA=0; //关闭总中断
     OneWire_DQ = 0; //拉低总线
     i = 1;
 	while (--i);//Delay 5us
@@ -72,6 +77,7 @@ unsigned char OneWire_ReceiveBit(void)
     dat = OneWire_DQ;
     i = 22;
     while (--i);//Delay 50us
+    EA=1; //开启总中断
     return dat;
 }
 /**
@@ -87,6 +93,7 @@ void OneWire_SendByte(unsigned char dat)
         OneWire_SendBit(dat&(0x01<<i));//发送一位
         
     }
+    
 }
 
 /**
