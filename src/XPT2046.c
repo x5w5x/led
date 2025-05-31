@@ -18,7 +18,7 @@ XPT2046_DCLK = 0;
 
 for(i=0;i<8;i++)
 {
-    XPT2046_DIN = Cmd & 0x80;
+    XPT2046_DIN = Cmd &0x80;
     Cmd <<= 1;
     XPT2046_DCLK = 1;
     XPT2046_DCLK = 0;
@@ -35,10 +35,8 @@ for(i=0;i<16;i++)
     }
 }
     XPT2046_CS = 1;
-  
-    
-   
     return AD_Value>>8;
+
        
     
    
