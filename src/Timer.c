@@ -56,5 +56,29 @@ void Timer0ms_Init(void)		//1毫秒@11.0592MHz
 //     P2_1=~P2_1,count=0;
 // }
 
+void Timer0_InitCounter()
+{
+    TMOD &=0xf0; //设置定时器0为模式1
+    TMOD |=0x01; 
+    
+    TH0=0; //设置定时器初值 100us 10次1ms 
+    TL0=0; 
+    TF0=0; //清除TF0标志
+    TR0=0; //启动定时器0
+}
 
+void Timer0_SetCounter(unsigned int counter)
+{
+    TH0=counter/256;
+    TL0=counter%256;
+}
 
+unsigned int Timer0_GetCounter(void)
+{
+    return (TH0<<8)|TL0;
+}
+
+void Timer0_Run(unsigned char Flag)
+{
+    TR0=Flag;
+}

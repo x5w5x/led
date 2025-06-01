@@ -11,31 +11,32 @@
 #include"DS18B20.h"
 #include"OneWire.h"
 #include"XPT2046.h"
-void delayms(unsigned int t)
-{
-  while(t--);
-}
-unsigned char T,c;
+#include "Int.h"
+#include"Delay.h"
+
+
+unsigned int T,c;
 unsigned int ADvalue;
+
 void main()
 {  
+Timer0_InitCounter();
 LCD_Init();
 T=0;
-LCD_ShowString(1,1,"ADJ NTC RG");
+Timer0_SetCounter(0);
+Timer0_Run(1);
+Delay(10);
+T=Timer0_GetCounter();
+
+
+
     
 while(1)
 {
- ADvalue=XPT2046_Read_AD(XPT2046_XP_8);
-LCD_ShowNum(2,1,ADvalue,4);
- ADvalue=XPT2046_Read_AD(XPT2046_YP_8);
-LCD_ShowNum(2,5,ADvalue,4);
- ADvalue=XPT2046_Read_AD(XPT2046_VBAT_12);
-LCD_ShowNum(2,9,ADvalue,4);
- ADvalue=XPT2046_Read_AD(XPT2046_AUX_12);
-LCD_ShowNum(2,13,ADvalue,4);
-    
+  LCD_ShowNum(1,1,T,5);
      
 
+  
   
       
   }     

@@ -7,7 +7,7 @@ sbit SER=P3^4;   //74HC595串行数据输入
 
 #define MatrixLED_Port P0 //LED矩阵端口
 
-void Delay(unsigned int t)
+void MatDelay(unsigned int t)
 {
     unsigned int i,j;
     
@@ -57,7 +57,7 @@ void MatrixLED_ShowColumn(unsigned char column, unsigned char dat)
 {
     HC595_WriteByte(dat); //将数据发送到74HC595
     MatrixLED_Port=~(0x80>>column); //将对应列的LED打开
-    Delay(1);
+    MatDelay(1);
     MatrixLED_Port=0xFF; //消影
     
 }
