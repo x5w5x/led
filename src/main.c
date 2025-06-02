@@ -13,27 +13,30 @@
 #include"XPT2046.h"
 #include "Int.h"
 #include"Delay.h"
+#include"IR.h"
 
-
-unsigned int T,c;
-unsigned int ADvalue;
+unsigned char Address,Command;
 
 void main()
 {  
-Timer0_InitCounter();
+
 LCD_Init();
-T=0;
-Timer0_SetCounter(0);
-Timer0_Run(1);
-Delay(10);
-T=Timer0_GetCounter();
+IR_Init();
 
 
 
     
 while(1)
 {
-  LCD_ShowNum(1,1,T,5);
+  if(IR_GetDataFlag()){
+    Address=IR_GetAddress();
+    Command=IR_GetCommand();
+    LCD_ShowHexNum(2,1,Address,4);
+    LCD_ShowHexNum(2,6,Command,4);
+
+
+
+  }
      
 
   
